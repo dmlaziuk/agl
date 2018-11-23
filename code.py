@@ -1,3 +1,4 @@
+import time
 import RPi.GPIO as GPIO
 
 KEYPAD = [
@@ -7,14 +8,18 @@ KEYPAD = [
     ["2", "6", "10", "14"]
 ]
 
-
-
+GRID = ["0", "0", "0", "0","0", "0", "0", "0","0", "0", "0", "0","0", "0", "0", "0"]
 
 ROW = [7,11,13,15]
 
 COL = [12,16,18,22]
 
 GPIO.setmode(GPIO.BCM)
+
+def print_grid():
+    print('\033[2J')
+    for i in range(4):
+        print('%s%s%s%s' % (GRID[i*4], GRID[i*4+1], GRID[i*4+2], GRID[i*4+3]))
 
 for j in range(4):
     GPIO.setup(COL[j], GPIO.OUT)
@@ -29,7 +34,10 @@ try:
             GPIO.output(COL[j], 0)
             for i in range(4):
                 if GPIO.input(ROW[i]) == 0:
-                    print(KEYPAD[i][j])
+                    key = int(KEYPAD[i][j])
+                    GRID[key-1] = "."
+                    print_grid()
+                    time.sleep(0.5)
             GPIO.output(COL[j], 1)
 except KeyboardInterrupt:
     GPIO.cleanup()
