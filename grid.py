@@ -93,11 +93,16 @@ if __name__ == '__main__':
         sys.exit(0)
 
     def print_grid():
-        file = open("grid.txt", "w")
+        file = open("grid.css", "w")
+        file.write(".grid {\n")
+        file.write("display:grid;\n")
+        file.write("grid-template:\n")
         for i in range(4):
-            line = '%s%s%s%s' % (GRID[i*4], GRID[i*4+1], GRID[i*4+2], GRID[i*4+3])
+            line = '%s %s %s %s' % (GRID[i*4], GRID[i*4+1], GRID[i*4+2], GRID[i*4+3])
             lcd.message(line, i + 1)
-            file.write(line + "\n")
+            file.write("\"" + line + "\" 100px\n")
+        file.write("/ 1fr 1fr 1fr 1fr;\n")
+        file.write("}\n")
         file.close()
 
     signal.signal(signal.SIGINT, signal_handler)

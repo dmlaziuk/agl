@@ -1,0 +1,48 @@
+html {
+  box-sizing: border-box;
+}
+
+*, *::before, *::after {
+  box-sizing: inherit;
+}
+
+
+.item {
+  padding: .2em;
+  color: yellow;
+  background: paleturquoise;
+  border-radius: 5px;
+  border: 1px solid #fff;
+}
+
+.a { grid-area: a; }
+
+.b { grid-area: b; }
+
+.c { grid-area: c; }
+
+.d { grid-area: d; }
+
+.e { grid-area: e; }
+
+.f { grid-area: f; }
+
+.g { grid-area: g; }
+
+.h { grid-area: h; }
+
+.i { grid-area: i; }
+
+.j { grid-area: j; }
+
+.k { grid-area: k; }
+
+.l { grid-area: l; }
+
+.m { grid-area: m; }
+
+.n { grid-area: n; }
+
+.o { grid-area: o; }
+
+.p { grid-area: p; }
