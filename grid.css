@@ -8,16 +8,17 @@ html {
 
 .grid {
   display: grid;
-  grid-template: "a     b     c" /* row size */  minmax(50px, auto)
-                 "d     .     e" /* row size */  minmax(50px, auto)
-                 ".     f     g" /* row size */  minmax(50px, auto)
-                 "h     i     ." /* row size */  minmax(50px, auto)
-                 / minmax(50px, auto) 1fr minmax(50px, auto); /* columns size */
+  grid-template: "a b c d" /* row size */  minmax(50px, auto)
+                 "e f g h" /* row size */  minmax(50px, auto)
+                 "i j k l" /* row size */  minmax(50px, auto)
+                 "m n o p" /* row size */  minmax(50px, auto)
+                 / minmax(50px, auto) 1fr 1fr minmax(50px, auto); /* columns size */
 }
 
 .item {
   padding: .2em;
-  background: #009688;
+  color: yellow;
+  background: paleturquoise;
   border-radius: 5px;
   border: 1px solid #fff;
 }
@@ -28,7 +29,7 @@ html {
 
 @keyframes gridAreaRandom {
   10% {
-    grid-area: a;
+    grid-area: n;
   }
   20% {
     grid-area: b;
@@ -55,6 +56,6 @@ html {
     grid-area: i;
   }
   100% {
-    grid-area: a;
+    grid-area: o;
   }
 }
