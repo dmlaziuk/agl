@@ -1,0 +1,16 @@
+{
+  "name": "agl",
+  "version": "0.0.1",
+  "description": "Arduino Grid Layout",
+  "main": "index.js",
+  "scripts": {
+    "start": "webpack-dev-server"
+  },
+  "author": "dm.laziuk@gmail.com",
+  "license": "MIT",
+  "dependencies": {
+    "webpack": "^4.26.0",
+    "webpack-cli": "^3.1.2",
+    "webpack-dev-server": "^3.1.10"
+  }
+}
