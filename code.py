@@ -4,15 +4,15 @@ import RPi.GPIO as GPIO
 KEYPAD = [
     ["4", "8", "12", "16"],
     ["3", "7", "11", "15"],
-    ["1", "5",  "9", "13"],
-    ["2", "6", "10", "14"]
+    ["2", "6", "10", "14"],
+    ["1", "5",  "9", "13"]
 ]
 
 GRID = ["0", "0", "0", "0","0", "0", "0", "0","0", "0", "0", "0","0", "0", "0", "0"]
 
-ROW = [7,11,13,15]
+ROW = [6,13,19,26]
 
-COL = [12,16,18,22]
+COL = [12,16,20,21]
 
 GPIO.setmode(GPIO.BCM)
 
@@ -37,7 +37,7 @@ try:
                     key = int(KEYPAD[i][j])
                     GRID[key-1] = "."
                     print_grid()
-                    time.sleep(0.5)
+                    time.sleep(0.3)
             GPIO.output(COL[j], 1)
 except KeyboardInterrupt:
     GPIO.cleanup()
