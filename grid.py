@@ -76,7 +76,7 @@ if __name__ == '__main__':
         ["1", "5",  "9", "13"]
     ]
 
-    GRID = [" ", " ", " ", " "," ", " ", " ", " "," ", " ", " ", " "," ", " ", " ", " "]
+    GRID = [".", ".", ".", ".",".", ".", ".", ".",".", ".", ".", ".",".", ".", ".", "."]
 
     NAME = ["a", "b", "c", "d","e", "f", "g", "h","i", "j", "k", "l","m", "n", "o", "p"]
 
@@ -93,8 +93,12 @@ if __name__ == '__main__':
         sys.exit(0)
 
     def print_grid():
+        file = open("grid.txt", "w")
         for i in range(4):
-            lcd.message('%s%s%s%s' % (GRID[i*4], GRID[i*4+1], GRID[i*4+2], GRID[i*4+3]), i+1)
+            line = '%s%s%s%s' % (GRID[i*4], GRID[i*4+1], GRID[i*4+2], GRID[i*4+3])
+            lcd.message(line, i + 1)
+            file.write(line + "\n")
+        file.close()
 
     signal.signal(signal.SIGINT, signal_handler)
 
@@ -105,6 +109,8 @@ if __name__ == '__main__':
 
     for i in range(4):
         GPIO.setup(ROW[i], GPIO.IN, pull_up_down = GPIO.PUD_UP)
+
+    print_grid()
 
     while True:
         for j in range(4):
