@@ -2,9 +2,7 @@
 
 import RPi.GPIO as GPIO
 import os, time, signal, sys
-from time import localtime, strftime, sleep
-from datetime import datetime, timedelta
-
+from time import sleep
 
 class LCD:
     def __init__(self, pin_rs=4, pin_e=15, pins_db=[9, 11, 7, 8]):
@@ -78,7 +76,9 @@ if __name__ == '__main__':
         ["1", "5",  "9", "13"]
     ]
 
-    GRID = ["0", "0", "0", "0","0", "0", "0", "0","0", "0", "0", "0","0", "0", "0", "0"]
+    GRID = [" ", " ", " ", " "," ", " ", " ", " "," ", " ", " ", " "," ", " ", " ", " "]
+
+    NAME = ["a", "b", "c", "d","e", "f", "g", "h","i", "j", "k", "l","m", "n", "o", "p"]
 
     ROW = [6,13,19,26]
 
@@ -86,15 +86,15 @@ if __name__ == '__main__':
 
     lcd = LCD()
 
+    counter = 0
+
     def signal_handler(signal, frame):
         GPIO.cleanup()
         sys.exit(0)
 
     def print_grid():
-        print('\033[2J')
         for i in range(4):
             lcd.message('%s%s%s%s' % (GRID[i*4], GRID[i*4+1], GRID[i*4+2], GRID[i*4+3]), i+1)
-            print('%s%s%s%s' % (GRID[i*4], GRID[i*4+1], GRID[i*4+2], GRID[i*4+3]))
 
     signal.signal(signal.SIGINT, signal_handler)
 
@@ -112,7 +112,8 @@ if __name__ == '__main__':
             for i in range(4):
                 if GPIO.input(ROW[i]) == 0:
                     key = int(KEYPAD[i][j])
-                    GRID[key-1] = "."
+                    GRID[key-1] = NAME[counter % 16]
+                    counter = counter + 1
                     print_grid()
                     time.sleep(0.3)
             GPIO.output(COL[j], 1)
