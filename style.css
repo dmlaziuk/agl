@@ -2,6 +2,17 @@
   box-sizing: border-box;
 }
 
+body {
+  /* color: #2c3a42; */
+  color: white;
+  background-color: #2388db;
+}
+
+.grid {
+  display: grid;
+  grid-gap: 20px;
+}
+
 .grid {
   max-width: 1024px;
   margin: 0 auto;
@@ -10,7 +21,6 @@
 
 .grid > * {
   border: 2px solid #f08c00;
-  background-color: #ffec99;
   border-radius: 5px;
   padding: 10px;
 }
@@ -21,31 +31,45 @@ nav ul {
   padding: 0;
 }
 
+/* header */
 .a {
+  font-size: 2em;
+  text-align: center;
   grid-area: a;
+  color: white;
+  background-color: #2c3a42;
 }
 
-.c {
-  grid-area: c;
-}
-
+/* nav */
 .b {
   grid-area: b;
+  color: #2c3a42;
+  background-color: #e67e22;
 }
 
+/* content */
+.c {
+  grid-area: c;
+  background-color: #6abf1c;
+}
+
+/* sidebar */
 .d {
   grid-area: d;
+  background-color: #1c9983;
 }
 
+/* advertising */
 .e {
   grid-area: e;
+  background-color: white;
+  justify-self: center;
 }
 
+/* footer */
 .f {
   grid-area: f;
-}
-
-.grid {
-  display: grid;
-  grid-gap: 20px;
+  font-size: 1.5em;
+  text-align: center;
+  background-color: #8f44ad;
 }
