@@ -4,6 +4,9 @@ import RPi.GPIO as GPIO
 import os, time, signal, sys
 from time import sleep
 
+INIT_GRID = [".", ".", ".", ".",".", ".", ".", ".",".", ".", ".", ".",".", ".", ".", "."]
+
+
 class LCD:
     def __init__(self, pin_rs=4, pin_e=15, pins_db=[9, 11, 7, 8]):
         self.pin_rs=pin_rs
@@ -98,7 +101,7 @@ if __name__ == '__main__':
         file.write("display:grid;\n")
         file.write("grid-template:\n")
         for i in range(4):
-            line = '%s %s %s %s' % (GRID[i*4], GRID[i*4+1], GRID[i*4+2], GRID[i*4+3])
+            line = '%s %s %s' % (GRID[i*4], GRID[i*4+1], GRID[i*4+2])
             lcd.message(line, i + 1)
             file.write("\"" + line + "\" 100px\n")
         file.write("/ 1fr 1fr 1fr 1fr;\n")
@@ -123,8 +126,13 @@ if __name__ == '__main__':
             for i in range(4):
                 if GPIO.input(ROW[i]) == 0:
                     key = int(KEYPAD[i][j])
-                    GRID[key-1] = NAME[counter % 16]
-                    counter = counter + 1
+                    if key == 4:
+                        counter = counter + 1
+                    elif key == 16:
+                        counter = 0
+                        GRID = INIT_GRID
+                    else:
+                        GRID[key-1] = NAME[counter % 16]
                     print_grid()
                     time.sleep(0.3)
             GPIO.output(COL[j], 1)
