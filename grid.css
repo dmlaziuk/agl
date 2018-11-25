@@ -1,9 +1,7 @@
 .grid {
-display:grid;
-grid-template:
-"a g h d" 100px
-"i j o p" 100px
-"c m b n" 100px
-"k e l f" 100px
-/ 1fr 1fr 1fr 1fr;
+grid-template-areas:
+"a . ."
+"b . ."
+"c . ."
+"d . .";
 }

@@ -98,13 +98,11 @@ if __name__ == '__main__':
     def print_grid():
         file = open("grid.css", "w")
         file.write(".grid {\n")
-        file.write("display:grid;\n")
-        file.write("grid-template:\n")
+        file.write("grid-template-areas:\n")
         for i in range(4):
             line = '%s %s %s' % (GRID[i*4], GRID[i*4+1], GRID[i*4+2])
             lcd.message(line, i + 1)
-            file.write("\"" + line + "\" 100px\n")
-        file.write("/ 1fr 1fr 1fr 1fr;\n")
+            file.write("\"" + line + "\"\n")
         file.write("}\n")
         file.close()
 
