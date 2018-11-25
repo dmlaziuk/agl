@@ -79,9 +79,10 @@ if __name__ == '__main__':
         ["1", "5",  "9", "13"]
     ]
 
-    GRID = [".", ".", ".", ".",".", ".", ".", ".",".", ".", ".", ".",".", ".", ".", "."]
+    GRID = INIT_GRID[:]
 
-    NAME = ["a", "b", "c", "d","e", "f", "g", "h","i", "j", "k", "l","m", "n", "o", "p"]
+    CLASS = ["a", "b", "c", "d","e", "f"]
+    NAME = ["header  ", "nav     ", "content ", "sidebar ", "advertise", "footer  "]
 
     ROW = [6,13,19,26]
 
@@ -101,7 +102,12 @@ if __name__ == '__main__':
         file.write("grid-template-areas:\n")
         for i in range(4):
             line = '%s %s %s' % (GRID[i*4], GRID[i*4+1], GRID[i*4+2])
-            lcd.message(line, i + 1)
+            if i == 0:
+                lcd.message(line + ' %s-%s' % (CLASS[counter % 6], NAME[counter % 6]), i + 1)
+            elif i == 3:
+                lcd.message(line + ' *-reset', i + 1)
+            else:
+                lcd.message(line, i + 1)
             file.write("\"" + line + "\"\n")
         file.write("}\n")
         file.close()
@@ -128,9 +134,9 @@ if __name__ == '__main__':
                         counter = counter + 1
                     elif key == 16:
                         counter = 0
-                        GRID = INIT_GRID
+                        GRID = INIT_GRID[:]
                     else:
-                        GRID[key-1] = NAME[counter % 16]
+                        GRID[key-1] = CLASS[counter % 6]
                     print_grid()
                     time.sleep(0.3)
             GPIO.output(COL[j], 1)
